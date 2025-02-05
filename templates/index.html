@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Analyse de Sentiment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Analyse de Sentiment</h1>
+        <form method="POST" action="/">
+            <label for="tweet">Entrez votre tweet :</label><br><br>
+            <textarea name="tweet" id="tweet" rows="5" cols="60" placeholder="Tapez votre tweet ici..."></textarea><br><br>
+            <button type="submit">Analyser</button>
+        </form>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        {% if sentiment is defined %}
+            <div class="result">
+                <h2>Score de Sentiment : <span style="color: green;">{{ sentiment }}</span></h2>
+                {% if sentiment > 0 %}
+                    <p>Le sentiment est <strong style="color: green;">positif</strong>.</p>
+                {% elif sentiment < 0 %}
+                    <p>Le sentiment est <strong style="color: red;">négatif</strong>.</p>
+                {% else %}
+                    <p>Le sentiment est <strong style="color: black;">neutre</strong>.</p>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
