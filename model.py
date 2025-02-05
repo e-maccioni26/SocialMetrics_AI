@@ -1,4 +1,3 @@
-# model.py
 import joblib
 from sklearn.linear_model import LogisticRegression
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -8,21 +7,18 @@ import os
 from config import MODEL_PATH
 
 def train_model(texts, positive_labels, negative_labels):
-    # Pipeline pour prédire la probabilité positive
     model_positive = Pipeline([
         ('tfidf', TfidfVectorizer()),
         ('clf', LogisticRegression(max_iter=1000))
     ])
     model_positive.fit(texts, positive_labels)
     
-    # Pipeline pour prédire la probabilité négative
     model_negative = Pipeline([
         ('tfidf', TfidfVectorizer()),
         ('clf', LogisticRegression(max_iter=1000))
     ])
     model_negative.fit(texts, negative_labels)
     
-    # Sauvegarder les deux modèles dans un tuple
     joblib.dump((model_positive, model_negative), MODEL_PATH)
     return model_positive, model_negative
 
