@@ -1,7 +1,6 @@
-# insert_data.py
 from db import get_db_connection
 
-# Exemple de données : (texte, positive, negative)
+# Exemple de données 
 data = [
     ("J'adore ce produit, il est incroyable !", 1, 0),
     ("Ce service est excellent et très réactif.", 1, 0),
