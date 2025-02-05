@@ -1,4 +1,3 @@
-# train.py
 from db import get_db_connection
 from model import train_model
 import pandas as pd
